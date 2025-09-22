@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+
+section {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 10px;
+}
+/************************* MENU ****************************/
+menu {
+  text-align: right; /* alt indhold i header rykkes til højre */
+  padding: 20px;
+}
+
+.menu {
+  margin-left: 20px;
+  text-decoration: none;
+  color: black;
+}
+
+/********************* INDEX BOKS *************************/
+.category_list_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 kolonner */
+  gap: 20px; /* afstand mellem bokse */
+  max-width: 700px; /* gør bredden smallere */
+  margin: 100px auto 0; /* ryk containeren længere ned på siden og centrer */
+}
+
+.category {
+  background-color: #c4c4c4; /* grå baggrund */
+  color: white;
+  padding: 40px 20px; /* luft inde i boksen */
+  border-radius: 8px; /* afrundede hjørner */
+  font-size: 18px;
+}
