@@ -1,6 +1,4 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -18,19 +16,24 @@ section {
 article {
   display: grid;
   grid-template-rows: subgrid;
-  grid-row: span 3;
+  grid-row: span 4;
   gap: 10px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
-/************************* MENU ****************************/
-menu {
-  text-align: right; /* alt indhold i header rykkes til højre */
-  padding: 20px;
+/************************* MENU + LOGO ****************************/
+.logo {
+  width: 400px; /* logoet bliver altid 150px bredt */
+  height: auto; /* højden følger billedets proportioner */
+  padding: 2rem; /* lidt luft omkring */
+  object-fit: contain; /* sikrer at billedet ikke strækkes grimt */
 }
 
 .menu {
-  margin-left: 20px;
-  text-decoration: none;
-  color: black;
+  display: flex;
+  justify-content: flex-end; /* højre */
+  gap: 24px; /* mellemrum mellem links */
+  padding: 20px;
 }
 
 /********************* INDEX BOKS *************************/
@@ -43,9 +46,236 @@ menu {
 }
 
 .category {
-  background-color: #c4c4c4; /* grå baggrund */
+  background-color: #8b7c6d; /* grå baggrund */
   color: white;
   padding: 40px 20px; /* luft inde i boksen */
   border-radius: 8px; /* afrundede hjørner */
   font-size: 18px;
+}
+
+/*********************** PRODUKT SIDE *******************************/
+.undertekst {
+  font-size: 13px;
+  font-weight: 8;
+  padding: 0.5rem;
+  color: rgb(158, 155, 155);
+}
+
+.pris {
+  font-size: 15px;
+  font-weight: 8;
+  padding: 0.5rem;
+}
+
+.more {
+  padding: 0.5rem;
+}
+
+/************** Udsolgt ************/
+.sold_out {
+  position: relative;
+}
+
+.udsolgt_tekst {
+  position: absolute;
+  top: 0.75rem; /* op i hjørnet */
+  right: -2rem; /* lidt ud over kanten */
+  transform: rotate(35deg);
+
+  background: #ef4444; /* rød */
+  color: #fff;
+  padding: 0.25rem 2.25rem;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1;
+  pointer-events: none; /* klik blokeres ikke */
+}
+
+/*********** Rabat **************/
+.rabat {
+  position: relative;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+.rabat::before {
+  content: "Prev. " attr(data-prev);
+  display: block;
+  color: #6b7280;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.rabat::after {
+  content: attr(data-discount);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #ef4444;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font: 700 12px/1 system-ui;
+}
+
+/** BILLEDE STYLING **/
+img {
+  width: 100%; /* Fylder hele article's bredde */
+  height: auto; /* Højden følger automatisk billedets proportioner */
+  display: block; /* Fjerner evt. whitespace under billedet */
+  object-fit: cover; /* (Valgfrit) beskær billedet, hvis du sætter fast højde */
+}
+
+/************* Produkt ***************/
+/* =========================================================
+   Grundopsætning for produkt-side med 3-kolonne grid
+   ========================================================= */
+
+body {
+  font-family: Arial, Helvetica, sans-serif; /* enkel fontstack */
+  color: #111;
+}
+
+/* Billeder skal skaleres pænt i deres container */
+img {
+  width: 100%; /* fylder sin container i bredden */
+  height: auto; /* bevarer proportioner */
+  display: block; /* fjerner evt. hvidt mellemrum under billedet (inline-gap) */
+}
+
+/* ======================= HEADER ======================= */
+
+/* Wrapper der centrerer header-indhold og giver vandret padding */
+.top {
+  max-width: 1200px; /* linjelængde (sidens maks bredde) */
+  margin-left: auto; /* centrerer .top horisontalt */
+  margin-right: auto;
+  padding: 20px 24px; /* luft inde i kanten */
+}
+
+/* Tekst-logo (kan erstattes af <img class="logo"> hvis du har fil) */
+.logo {
+  font-size: 38px; /* stor logotekst */
+  font-weight: 800; /* ekstra fed */
+}
+.logo .r {
+  color: #e11d48; /* det røde R i “FashionRUs” */
+}
+
+/* Brødkrummer/sti under logoet */
+.crumbs {
+  margin-top: 8px; /* afstand fra logo til sti */
+  font-size: 14px;
+  color: #6b7280; /* grå tekst */
+}
+.crumbs a {
+  color: #6b7280; /* links matcher brødkrummefarven */
+  text-decoration: none; /* ingen streg under som standard */
+}
+.crumbs a:hover {
+  text-decoration: underline; /* vis tydeligere at det er klikbart */
+}
+
+/* ============ SIDE-LAYOUT (3 kolonner: billede | info | køb) ============ */
+
+.grid {
+  max-width: 1200px; /* samme sidelimitering som header */
+  margin-left: auto; /* centrer hele layoutet */
+  margin-right: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-left: 24px; /* indrykning fra venstre/højre */
+  padding-right: 24px;
+
+  display: grid; /* slå CSS Grid til */
+  gap: 32px; /* afstand mellem kolonner og rækker */
+  grid-template-columns: 1fr 1fr 1fr; /* tre lige brede kolonner */
+  /* Hvis du vil have andre bredder: fx 1.2fr 1fr 0.9fr */
+  align-items: start; /* hver kolonne starter oppe i toppen */
+}
+
+/****************** MIDTERKOLONNE: PRODUKTINFO *****************/
+.info h1 {
+  font-size: 25px;
+  margin-bottom: 16px;
+  margin-left: 2.5rem;
+  margin-top: -0.8rem;
+}
+
+/* Definition list for “Model name / Color / Inventory …” */
+
+.specs dt {
+  font-weight: 700; /* label i fed (dt) */
+  margin-top: 15px; /* afstand før hver ny række */
+  margin-left: 2.5rem;
+}
+
+.specs dd {
+  margin-top: 4px; /* lille afstand efter label */
+  color: #374151; /* lidt lysere grå til værdien */
+}
+
+/* Brand-overskrift og lille tagline under */
+.brand {
+  font-size: 50px; /* stor “Nike” */
+  margin-top: 28px;
+  margin-bottom: 8px;
+}
+
+/************* HØJREKOLONNE: KØB-BOKS ****************/
+
+.buy {
+  background-color: #8b7c6d; /* lys grå boks bag teksten */
+  opacity: 85%;
+  padding: 20px; /* luft inde i boksen */
+  border-radius: 8px; /* bløde hjørner */
+}
+.buy h3 {
+  margin-top: 0; /* nulstil topmargin */
+  margin-bottom: 1rem;
+  font-size: 40px;
+  line-height: 1.1; /* kompakt linjeafstand som i forlægget */
+  color: #ffffff; /* hvid overskrift oven på grå baggrund */
+}
+.meta {
+  color: #111;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Label + select (vælg størrelse) */
+.field {
+  display: block; /* label på egen linje over select */
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+select {
+  width: 100%; /* fuld bredde i boksen */
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db; /* lys grå kant */
+  border-radius: 8px;
+}
+
+/* Primær knap: “Add to basket” */
+button {
+  width: 100%; /* fuld bredde */
+  padding: 14px 16px;
+  border: none; /* fjern standardkant */
+  border-radius: 10px;
+  font-weight: 700; /* fed knaptekst */
+  background-color: #111; /* sort baggrund */
+  color: #fff; /* hvid tekst */
+  cursor: pointer; /* hånd-cursor ved hover */
+}
+
+/* ================= RESPONSIVT: MOBIL (1 kolonne) ================= */
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr; /* læg alle tre sektioner under hinanden */
+  }
+  .buy h3 {
+    font-size: 32px; /* lidt mindre overskrift i køb-boksen */
+  }
 }
