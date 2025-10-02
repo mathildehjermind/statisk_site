@@ -217,7 +217,7 @@ img {
 
 /* Brand-overskrift og lille tagline under */
 .brand {
-  font-size: 50px; /* stor “Nike” */
+  font-size: 15px; /* stor “Nike” */
   margin-top: 28px;
   margin-bottom: 8px;
 }
@@ -278,4 +278,24 @@ button {
   .buy h3 {
     font-size: 32px; /* lidt mindre overskrift i køb-boksen */
   }
+}
+
+/*********** Sold out *************/
+
+.discounted_container {
+  display: none;
+}
+
+.discount .discounted_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.discount .price {
+  text-decoration: line-through;
+}
+
+.discounted_container p:nth-child(2) {
+  color: red;
+  background-color: white;
 }
