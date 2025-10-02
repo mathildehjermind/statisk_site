@@ -35,10 +35,15 @@ function showProducts(products) {
     }
 
     productListContainer.innerHTML += `
-      <article class="product_card ${soldOutClass}">
-        ${product.soldout ? '<div class="soldout-label">Sold Out</div> ' : ""}
+      <article class="product_card ${soldOutClass}" >
+        
+        <div class="imageContainer">  
+            
+            <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="${product.productdisplayname}">
+            <p>SOLD OUT</p>
+        </div>
         <div>
-          <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="${product.productdisplayname}">
+          
         </div>
         <h2>${product.productdisplayname}</h2>
         <p class="brand">${product.articletype} | ${product.brandname}</p>
@@ -48,41 +53,5 @@ function showProducts(products) {
     `;
   });
 }
-
+// ${product.soldout ? '<div class="soldout-label">Sold Out</div> ' : ""}
 //SOLD OUT//
-const carList = document.querySelector("#car_list");
-productUrl = "cars.json";
-getData();
-function getData() {
-  console.log("getData ....");
-  fetch(productUrl).then((res) => res.json().then((data) => showCars(data)));
-}
-
-function showCars(cars) {
-  carList.innerHTML = "";
-  cars.forEach((car) => {
-    // console.log("car.discount", typeof car.discount);
-    carList.innerHTML += `
-     <article class="card ${car.soldout ? "soldOut" : ""} ${car.discount ? "discount" : ""}" >
-    
-    <h2>${car.brand}</h2>
-    <div class="imageContainer">  
-      <img src=${car.image} alt="bil"/>
-      <p>SOLD OUT</p>
-    </div>
-    <h3>${car.brand} ${car.model}</h3>
-    <p>${car.colors.join(" / ")}</p>
-      <p class="price">
-        DKK <span>${car.price}</span>,-
-      </p>
-      <div class="discounted_container">
-        <p>
-          Now DKK <span>${car.price - (car.price * car.discount) / 100}</span>,-
-        </p>
-        <p>
-          <span>${car.discount}</span> %
-        </p>
-      </div>
-    </article>`;
-  });
-}
